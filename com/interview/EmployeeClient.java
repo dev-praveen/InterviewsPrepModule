@@ -69,6 +69,24 @@ public class EmployeeClient {
             v.forEach(emplist -> System.out.println(emplist.getName()));
         });
 
+        //What is the average salary and total salary of the whole organization?
+        final OptionalDouble avgSal = list.stream().mapToDouble(Employee::getSalary).average();
+        avgSal.ifPresent(System.out::println);
+
+        final double totalSal = list.stream().mapToDouble(Employee::getSalary).sum();
+        System.out.println(totalSal);
+
+        //Separate the employees who are younger or equal to 25 years from those employees who are older than 25 years.
+        final List<Employee> list25 = list.stream().filter(emp -> emp.getAge() <= 25).collect(Collectors.toList());
+        System.out.println(list25);
+
+        //Who is the oldest employee in the organization? What is his age and which department he belongs to?
+        list.stream().max(Comparator.comparing(Employee::getAge)).ifPresent(System.out::println);
+
+        //find top three employee details based on highest salary?
+        list.stream().sorted(Comparator.comparing(Employee::getSalary).reversed())
+                .limit(3).forEach(System.out::println);
+
 
     }
 
