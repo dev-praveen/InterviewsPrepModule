@@ -65,7 +65,7 @@ public class EmployeeClient {
                 .collect(Collectors.groupingBy(Employee::getDepartment));
 
         allDeptNames.forEach((k, v) -> {
-            System.out.println("\n"+"department name "+k);
+            System.out.println("\n" + "department name " + k);
             v.forEach(emplist -> System.out.println(emplist.getName()));
         });
 
@@ -87,6 +87,12 @@ public class EmployeeClient {
         list.stream().sorted(Comparator.comparing(Employee::getSalary).reversed())
                 .limit(3).forEach(System.out::println);
 
+        //find the highest salaried employee from each department
+        /*final Map<String, Employee> highSalMap = list.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+                Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparing(Employee::getSalary)), Optional::get)));*/
+        final Map<String, Optional<Employee>> highSalMap = list.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+                Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+        highSalMap.forEach((k, v) -> System.out.println(k+" "+v.get()));
 
     }
 
