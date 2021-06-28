@@ -15,3 +15,9 @@ Separate the employees who are younger or equal to 25 years from those employees
 Who is the oldest employee in the organization? What is his age and which department he belongs to?
 find top three employee details based on highest salary?
 find the highest salaried employee from each department
+
+
+what is Optional in java8 ?
+   A container object which may or may not contain a non-null value. If a value is present, isPresent() will return true and get() will return the value.
+   orElse() (return a default value if value not present) and ifPresent() (execute a block of code if the value is present).
+   orElseThrow() Return the contained value, if present, otherwise throw an exception to be created by the provided supplier.
