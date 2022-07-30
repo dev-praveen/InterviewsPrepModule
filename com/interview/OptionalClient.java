@@ -10,7 +10,7 @@ public class OptionalClient {
         //Optional<String> nullOptional = Optional.ofNullable(null); // no exception
         Optional<String> nullOptional = Optional.ofNullable("Praveen");
 
-        nullOptional.ifPresent(s -> System.out.println(s)); // if the optional is present then print.
+        nullOptional.ifPresent(System.out::println); // if the optional is present then print.
 
         //Return true if there is a value present, otherwise false.
         if(nullOptional.isPresent()) {
@@ -23,7 +23,7 @@ public class OptionalClient {
         System.out.println(default_value);
 
         //Return the value if present, otherwise invoke other and return the result of that invocation.
-        final String supplied_value = nullOptional.orElseGet(() -> new String("Supplied value"));
+        final String supplied_value = nullOptional.orElseGet(() -> "Supplied value");
         System.out.println(supplied_value);
 
         //Return the contained value, if present, otherwise throw an exception to be created by the provided supplier.
@@ -33,7 +33,7 @@ public class OptionalClient {
         //final Optional<String> fullName = getFullName(101);
         //final Optional<String> fullName = getFullName(100);
         final Optional<String> fullName = getFullName(10000);
-        fullName.ifPresent(name -> System.out.println(name));
+        fullName.ifPresent(System.out::println);
 
 
     }
